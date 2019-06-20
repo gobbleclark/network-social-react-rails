@@ -8,6 +8,7 @@ class Home extends React.Component {
   
   componentDidMount() {
     axios.get('/api/friends')
+    // axios.get('/api/users')
       .then(res => this.setState({ friends: res.data, }))
   }
   

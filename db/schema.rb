@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_19_224002) do
+ActiveRecord::Schema.define(version: 2019_06_19_225337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,11 +54,14 @@ ActiveRecord::Schema.define(version: 2019_06_19_224002) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "liked_friends"
+    t.bigint "friend_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["friend_id"], name: "index_users_on_friend_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
   add_foreign_key "friends", "users"
+  add_foreign_key "users", "friends"
 end
